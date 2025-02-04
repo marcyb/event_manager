@@ -12,7 +12,7 @@ def clean_zipcode(zipcode)
 end
 
 def clean_phone_number(str)
-  /^1?(\d{10})$/.match(str.gsub(/\D/, ''))&.captures
+  /^1?(\d{10})$/.match(str.gsub(/\D/, ''))&.captures&.[](0)
 end
 
 def legislators_by_zipcode(zip)
