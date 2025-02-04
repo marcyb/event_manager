@@ -63,5 +63,14 @@ def clean_phone_numbers(contents)
   end
 end
 
+# Assignment part 2
+def time_targeting(contents)
+  counts = contents.each_with_object(Hash.new(0)) do |row, counts|
+    counts[Time.strptime(row[:regdate], '%m/%d/%y %H:%M').hour] += 1
+  end
+  p(Hash[counts.sort_by { |_, v| -v }])
+end
+
 # create_thank_you_letters(contents)
-clean_phone_numbers(contents)
+# clean_phone_numbers(contents)
+time_targeting(contents)
