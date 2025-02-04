@@ -65,12 +65,21 @@ end
 
 # Assignment part 2
 def time_targeting(contents)
-  counts = contents.each_with_object(Hash.new(0)) do |row, counts|
-    counts[Time.strptime(row[:regdate], '%m/%d/%y %H:%M').hour] += 1
+  counts = contents.each_with_object(Hash.new(0)) do |row, hash|
+    hash[Time.strptime(row[:regdate], '%m/%d/%y %H:%M').hour] += 1
+  end
+  p(Hash[counts.sort_by { |_, v| -v }])
+end
+
+# Assignment part 3
+def day_targeting(contents)
+  counts = contents.each_with_object(Hash.new(0)) do |row, hash|
+    hash[Date.strptime(row[:regdate], '%m/%d/%y %H:%M').wday] += 1
   end
   p(Hash[counts.sort_by { |_, v| -v }])
 end
 
 # create_thank_you_letters(contents)
 # clean_phone_numbers(contents)
-time_targeting(contents)
+# time_targeting(contents)
+day_targeting(contents)
